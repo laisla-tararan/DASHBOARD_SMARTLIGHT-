@@ -1,0 +1,268 @@
+/* style.css — Estilo do Dashboard
+ * ─────────────────────────────────────────────────────────────────
+ * Estilo simples e legível.
+ * Para personalizar o visual do seu projeto, edite as variáveis
+ * na seção :root abaixo — cores, fontes e tamanhos.
+ */
+
+/* ── Variáveis globais ───────────────────────────────────────────*/
+:root {
+    --bg:        #0d1117;   /* cor de fundo da página */
+    --surface:   #161b22;   /* cor dos cartões */
+    --border:    #30363d;   /* cor das bordas */
+    --accent:    #00ff73;   /* cor de destaque (azul) */
+    --verde:     #074e2d;   /* cor do status conectado */
+    --vermelho:  #ff4444;   /* cor do status desconectado */
+    --texto:     #e6edf3;   /* cor do texto principal */
+    --muted:     #8b949e;   /* cor do texto secundário */
+    --mono:      'Courier New', monospace; /* fonte para código/dados */
+}
+
+/* ── Reset básico ────────────────────────────────────────────────*/
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--texto);
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+}
+
+/* ── Header ──────────────────────────────────────────────────────*/
+header {
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+.badge {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.9rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+}
+
+header h1      { font-size: 1.8rem; font-weight: 300; margin-bottom: 0.3rem; }
+
+.subtitulo { 
+    color: var(--muted); 
+    font-size: 0.85rem; 
+}
+
+/* Card Tempo Real */
+header #card-temporeal{
+    background-color: #12181f;     
+    border: 1px solid #1c2630;      
+    border-radius: 8px;            
+    padding: 10px 14px;            
+    width: fit-content;              /* Garante que ele não estique na horizontal */
+
+    /* 🛠️ AS LINHAS DO POSICIONAMENTO: */
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+#card-temporeal p {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: monospace;          /* Evita que os números fiquem mudando de largura */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+/* Feito com uso do Gemini */
+#data::before {
+    content: "📅";
+    font-size: 0.9rem;
+    opacity: 0.7;                    /* Deixa o ícone levemente fosco como no design */
+}
+
+/* Inserindo o ícone de relógio antes da hora */
+#hora::before {
+    content: "🕒";
+    font-size: 0.9rem;
+    opacity: 0.7;                    /* Deixa o ícone levemente fosco */
+}
+
+/* ── Área central ────────────────────────────────────────────────*/
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── Barra de status ─────────────────────────────────────────────*/
+.status-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.85rem;
+    
+    position: absolute;
+    top: 25px;           
+    right: 175px;        
+    gap: 0.8rem;   
+}
+
+/* Bolinha de status — vermelho = desconectado, verde = conectado */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--vermelho);
+    flex-shrink: 0;
+    transition: background 0.3s;
+}
+
+.status-dot.conectado { background: var(--verde); }
+
+/* ── Cartão da última mensagem ───────────────────────────────────*/
+.card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;                          
+    background: transparent;        
+    border: none;                         
+    padding: 0;
+    text-align: center;
+}
+
+.card-statusluz, .card-ldr, .card-pir, .card-controle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.card-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.card-valor {
+    font-size: 1.4rem;
+    color: var(--texto);
+    font-weight: bold;
+    margin: 0;
+}
+
+/* ── Log de mensagens ────────────────────────────────────────────*/
+.log-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+.log-titulo {
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+#log {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    max-height: 250px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    color: var(--muted);
+}
+
+.botoes-grupo {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    gap: 0.7rem;           
+}
+
+/* Botão Modos e Ligar/Desligar LED */
+.btn-ctrl {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.btn-ligar {
+    background-color: #34a853;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+}
+.btn-ligar:hover { background-color: #2e9648; }
+
+.btn-desligar {
+    background-color: #1c232d;
+    color: #a5b1be;
+    border: 1px solid #283341;
+}
+.btn-desligar:hover {
+    background-color: #232c39;
+    color: #ffffff;
+}
+
+.btn-ctrl:active { transform: scale(0.98); }
+
+.divisor-linha {
+    width: 80%;
+    height: 1px;
+    background: #283341;
+    margin: 0.3rem 0;
+}
+
+.modo-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.modo-label { color: var(--muted); }
+
+.modo-texto {
+    font-weight: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}

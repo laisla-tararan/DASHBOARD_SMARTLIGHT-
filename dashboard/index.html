@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLight - Painel de Controle</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!--
+        MQTT.js — biblioteca que permite usar MQTT no navegador.
+        O browser não consegue TCP puro, então ela usa WebSocket.
+        Carregada via CDN — requer internet para funcionar.
+        Para uso offline: baixe o arquivo e referencie localmente.
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <p class="badge">SmartLight</p>
+        <h1>Dashboard IoT</h1>
+        <p class="subtitulo">Luz Inteligente</p>
+
+        <section id="card-temporeal">
+            <p id="data"></p>
+            <p id="hora"></p>
+        </section>
+
+        <!-- Indicador de status da conexão com o broker -->
+        <div class="status-bar">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-texto">Desconectado</span>
+        </div>
+    </header>
+
+    <main>
+        <h1> Visão Geral </h1>
+        <p class="subtitulo"> Acompanhe o funcionamento do sistema de iluminação inteligente em tempo real. </p>
+
+        <!-- Área principal: exibe todas as infos -->
+        <div class="card">
+            <div class="card-statusluz">
+                <p class="card-label">💡 Status da Luz</p>
+                <p class="card-valor" id="luz-valor">Aguardando...</p>
+            </div>
+            
+            <div class="card-ldr">
+                <p class="card-label">☀️ Luminosidade</p>
+                <p class="card-valor" id="ldr-valor">Aguardando...</p>
+            </div>
+            
+            <div class="card-pir">
+                <p class="card-label">🚶 Movimento</p>
+                <p class="card-valor" id="movimento-valor">Aguardando...</p>
+            </div>
+
+            <div class="card-controle">
+                <p class="card-label">👆 Controle Manual</p>
+                <div class="botoes-grupo">
+                    <button id="btn-ligar" class="btn-ctrl btn-ligar">LIGAR LUZ</button>
+                    <button id="btn-desligar" class="btn-ctrl btn-desligar">DESLIGAR LUZ</button>
+                </div>
+                <div class="divisor-linha"></div>
+                <div class="modo-status">
+                    <span class="modo-label">Modo Atual:</span>
+                    <span id="modo-valor" class="modo-texto modo-automatico">AUTOMÁTICO</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Log: histórico de todas as mensagens recebidas -->
+        <div class="log-box">
+            <p class="log-titulo">Histórico de mensagens</p>
+            <pre id="log">Aguardando conexão...\n</pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
