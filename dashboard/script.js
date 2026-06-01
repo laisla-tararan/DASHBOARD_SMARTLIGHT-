@@ -12,7 +12,7 @@
 // ws:// = WebSocket sem criptografia (equivalente ao http://)
 // O IP é o mesmo do BROKER_IP no config.py do Pico
 // A porta 8000 é a porta WebSocket configurada no mosquitto.conf
-const BROKER = "ws://10.132.112.3:8000"  // ← coloque o IP do seu notebook
+const BROKER = "ws://10.132.112.4:8000"  // ← coloque o IP do seu notebook
 
 // Deve ser igual ao TOPIC_PUB do config.py do Pico
 const TOPICO = "senai/grupo_7/temp"  // o "+" é um wildcard — recebe de QUALQUER aluno
