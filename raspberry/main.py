@@ -1,6 +1,6 @@
 # main.py — Código principal do Pico 2W
 # ─────────────────────────────────────────────────────────────────
-from config import * # importa todas as variáveis do config.py
+import config # importa todas as variáveis do config.py
 from wifi_connect import conectar_wifi
 from umqtt.simple import MQTTClient  # biblioteca MQTT nativa do MicroPython
 import utime                         # IMPORTANTE: Importa o módulo completo para usar ticks_ms

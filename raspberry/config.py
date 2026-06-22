@@ -17,7 +17,7 @@ BROKER_PORT = 1883           # porta TCP padrão do MQTT
 # ── Identificação do dispositivo ──────────────────────────────────
 # CLIENT_ID identifica este Pico no broker
 # Dois dispositivos com o mesmo ID se desconectam mutuamente
-MEU_NOME  = "SmartLight"                    # ← coloque seu nome aqui
+MEU_NOME  = "smartlight"                    # ← coloque seu nome aqui
 CLIENT_ID = f"pico_{MEU_NOME.lower()}"  # ex: pico_joao
 
 # ── Tópico MQTT ───────────────────────────────────────────────────
